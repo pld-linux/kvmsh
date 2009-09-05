@@ -13,7 +13,7 @@ Summary:	kernel-based Virtual Machines manager
 Summary(pl.UTF-8):	Zarządca maszyn wirtualnych KVM
 Name:		kvmsh
 Version:	0
-Release:	0.%{snap}.1
+Release:	0.%{snap}.2
 License:	GPL v2
 Group:		Applications
 Source0:	%{name}-%{snap}.tar.bz2
@@ -49,7 +49,7 @@ Pakiet ten dostarcza bashowe uzupełnianie nazw dla kvmsh.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man{5,8}}
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/bash_completion.d/
+install -d $RPM_BUILD_ROOT%{_sysconfdir}{/bash_completion.d/,/kvmsh/{hosts,auto}}
 
 install src/kvmsh.pl $RPM_BUILD_ROOT%{_bindir}/kvmsh
 install doc/man/kvmsh.8 $RPM_BUILD_ROOT%{_mandir}/man8
@@ -62,6 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO doc/examples
+%{_sysconfdir}/kvmsh
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man5/kvmdomain.conf.5*
 %{_mandir}/man8/kvmsh.8*
