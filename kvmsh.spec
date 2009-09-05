@@ -18,7 +18,9 @@ License:	GPL v2
 Group:		Applications
 Source0:	%{name}-%{snap}.tar.bz2
 # Source0-md5:	0f731b1fcfb3661abe33326e6cfeed56
+Patch0:		%{name}-stdvga.patch
 URL:		http://gitorious.org/kvmsh/
+Requires:	kvm
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -45,11 +47,13 @@ Pakiet ten dostarcza bashowe uzupełnianie nazw dla kvmsh.
 
 %prep
 %setup -q -n %{name}-%{snap}
+%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man{5,8}}
 install -d $RPM_BUILD_ROOT%{_sysconfdir}{/bash_completion.d/,/kvmsh/{auto,hosts,network}}
+install -d $RPM_BUILD_ROOT/var/run/kvmsh/hosts
 
 install src/kvmsh.pl $RPM_BUILD_ROOT%{_bindir}/kvmsh
 install doc/man/kvmsh.8 $RPM_BUILD_ROOT%{_mandir}/man8
@@ -62,10 +66,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO doc/examples
-%{_sysconfdir}/kvmsh
+%attr(750,root,kvm) %{_sysconfdir}/kvmsh
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man5/kvmdomain.conf.5*
 %{_mandir}/man8/kvmsh.8*
+%attr(750,root,kvm) /var/run/kvmsh
 
 %files -n bash-completion-kvmsh
 %defattr(644,root,root,755)
