@@ -49,7 +49,7 @@ Pakiet ten dostarcza bashowe uzupełnianie nazw dla kvmsh.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man{5,8}}
-install -d $RPM_BUILD_ROOT%{_sysconfdir}{/bash_completion.d/,/kvmsh/{hosts,auto}}
+install -d $RPM_BUILD_ROOT%{_sysconfdir}{/bash_completion.d/,/kvmsh/{auto,hosts,network}}
 
 install src/kvmsh.pl $RPM_BUILD_ROOT%{_bindir}/kvmsh
 install doc/man/kvmsh.8 $RPM_BUILD_ROOT%{_mandir}/man8
