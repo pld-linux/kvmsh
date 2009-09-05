@@ -1,0 +1,29 @@
+From 99e17b38df294ced12fa809fa17a3d28c3f4f7b7 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Adam=20Go=C5=82=C4=99biowski?= <adamg@pld-linux.org>
+Date: Sat, 5 Sep 2009 23:03:55 +0200
+Subject: [PATCH] kvmsh: -std-vga was replaced by -vga std in kvm-77
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Adam Gołębiowski <adamg@pld-linux.org>
+---
+ src/kvmsh.pl |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/src/kvmsh.pl b/src/kvmsh.pl
+index 7085b37..6aea51e 100644
+--- a/src/kvmsh.pl
++++ b/src/kvmsh.pl
+@@ -323,7 +323,7 @@ sub cmd_create {
+   $cmdline .= " -usb -usbdevice tablet" if( $HOST::mouse eq 'tablet' );
+   $cmdline .= " -k $HOST::keyboard";
+   $cmdline .= " -localtime" if( $HOST::rtc eq 'localtime' );
+-  $cmdline .= " -std-vga";
++  $cmdline .= " -vga std";
+   if( defined @HOST::ide && @HOST::ide > 0 ) {
+     foreach my $dev ( @HOST::ide ) {
+       my ($file, $idx, $media, $format, $boot) = ($dev->{'file'},
+-- 
+1.6.4.2
+
