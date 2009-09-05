@@ -20,7 +20,7 @@ Source0:	%{name}-%{snap}.tar.bz2
 # Source0-md5:	0f731b1fcfb3661abe33326e6cfeed56
 Patch0:		%{name}-stdvga.patch
 URL:		http://gitorious.org/kvmsh/
-Requires:	kvm
+Requires:	kvm >= 77
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
