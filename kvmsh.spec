@@ -20,8 +20,8 @@ Source0:	%{name}-%{snap}.tar.bz2
 # Source0-md5:	0f731b1fcfb3661abe33326e6cfeed56
 Patch0:		%{name}-stdvga.patch
 URL:		http://gitorious.org/kvmsh/
-Requires:	kvm >= 77
 BuildRequires:	rpm-perlprov >= 4.1-13
+Requires:	kvm >= 77
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -52,13 +52,14 @@ Pakiet ten dostarcza bashowe uzupełnianie nazw dla kvmsh.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man{5,8}}
-install -d $RPM_BUILD_ROOT%{_sysconfdir}{/bash_completion.d/,/kvmsh/{auto,hosts,network}}
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/kvmsh/{auto,hosts,network}
+install -d $RPM_BUILD_ROOT/etc/bash_completion.d
 install -d $RPM_BUILD_ROOT/var/run/kvmsh/hosts
 
 install src/kvmsh.pl $RPM_BUILD_ROOT%{_bindir}/kvmsh
 install doc/man/kvmsh.8 $RPM_BUILD_ROOT%{_mandir}/man8
 install doc/man/kvmdomain.conf.5 $RPM_BUILD_ROOT%{_mandir}/man5
-install contrib/bash_completion $RPM_BUILD_ROOT%{_sysconfdir}/bash_completion.d/kvmsh-completion.bash
+install contrib/bash_completion $RPM_BUILD_ROOT/etc/bash_completion.d/kvmsh
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -74,4 +75,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n bash-completion-kvmsh
 %defattr(644,root,root,755)
-%{_sysconfdir}/bash_completion.d/*
+/etc/bash_completion.d/vmsh
