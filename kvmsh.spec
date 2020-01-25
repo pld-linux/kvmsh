@@ -8,7 +8,6 @@
 #	D=$(date '+%Y%m%d'); git archive master --prefix kvmsh-$D/ | bzip2 -f9 > kvmsh-$D.tar.bz2
 #
 %define snap	20090905
-%include	/usr/lib/rpm/macros.perl
 Summary:	kernel-based Virtual Machines manager
 Summary(pl.UTF-8):	Zarządca maszyn wirtualnych KVM
 Name:		kvmsh
